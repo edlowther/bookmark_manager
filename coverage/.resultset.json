@@ -1,6 +1,17 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/lowthe01/projects/makers_academy/week_four/bookmark_manager/spec/features/creating_links_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
       "/Users/lowthe01/projects/makers_academy/week_four/bookmark_manager/spec/features/list_spec.rb": [
         1,
         1,
@@ -18,6 +29,6 @@
         null
       ]
     },
-    "timestamp": 1508252278
+    "timestamp": 1508253717
   }
 }
