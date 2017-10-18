@@ -3,6 +3,8 @@ ENV['RACK_ENV'] = 'test'
 require_relative '../app/app'
 require_relative '../app/models/link'
 
+require_relative '../spec/features/web_helper'
+
 require 'capybara'
 require 'capybara/rspec'
 require 'database_cleaner'
