@@ -1,0 +1,5 @@
+<ul id="links">
+  <% @links.select{|link| link.tags.first.name == @search_term}.each do |link| %>
+    <li><a href="<%= link.url %>"><%= link.title %></a>: <%= link.tags.last.name %></li>
+  <% end %>
+</ul>
