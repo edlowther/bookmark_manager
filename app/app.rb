@@ -30,9 +30,10 @@ class BookmarkManager  < Sinatra::Base
   end
 
   get '/tags/:name' do
-    @search_term = params['name']
-    @links = Link.all
-    erb :"links/filter"
+    search_term = params['name']
+    tag = Tag.first(name: search_term)
+    @links = tag ? tag.links : []
+    erb :"links/index"
   end
 end
 
