@@ -27,12 +27,12 @@ class BookmarkManager  < Sinatra::Base
     redirect '/links'
   end
 
-  get '/links/:title' do
-    @title = params[:title].gsub("_", " ")
+  get '/links/:title/tags/new' do
+    @link = Link.first(:title => params[:title].gsub("_", " "))
     erb :"links/link"
   end
 
-  post '/links/:title/newtag' do
+  post '/links/:title/tags' do
     title = params[:title].gsub("_", " ")
     tag = Tag.first(:name => params[:tag]) || Tag.create(:name => params[:tag])
     link = Link.first(:title => title)

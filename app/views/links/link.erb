@@ -1,5 +1,7 @@
-<h2><%= @title %></h2>
-<form action="/links/<%= @title.gsub(" ", "_") %>/newtag" method="post">
+<h3><a href="<%= @link.url %>"><%= @link.title %></a></h3>
+<p>Tags: <%= @link.tags.map { |tag| tag.name }.join(", ") %> <a href="/links/<%= @link.title.gsub(" ", "_") %>/tags/new">Add new tag</a></p>
+
+<form action="/links/<%= @link.title.gsub(" ", "_") %>/tags" method="post">
   <label for="tag">
     Add a new tag:
     <input type="text" name="tag" id="tag">
