@@ -1,0 +1,8 @@
+<h2><%= @title %></h2>
+<form action="/links/<%= @title.gsub(" ", "_") %>/newtag" method="post">
+  <label for="tag">
+    Add a new tag:
+    <input type="text" name="tag" id="tag">
+  </label>
+  <input type="submit" value="Done">
+</form>

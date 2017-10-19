@@ -2,6 +2,21 @@
 
 <ul id="links">
   <% @links.each do |link| %>
-    <li><a href="<%= link.url %>"><%= link.title %></a>: <%= link.tags.last.name %></li>
+    <li>
+      <div>
+        <h3><a href="<%= link.url %>"><%= link.title %></a></h3>
+        <p>Tags: <%= link.tags.map { |tag| tag.name }.join(", ") %> <a href="/links/<%= link.title.gsub(" ", "_") %>">Add new tag</a></p>
+      </div>
+    </li>
   <% end %>
 </ul>
+
+<h3><a href='/links/new'>Add a new link</a></h3>
+
+<form action="/tags" method="post">
+  <label for="search_term">
+    Search for a specific tag:
+    <input type="text" name="search_term" id="search_term">
+  </label>
+  <input type="submit" value="Submit">
+</form>

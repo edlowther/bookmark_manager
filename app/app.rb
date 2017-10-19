@@ -21,12 +21,28 @@ class BookmarkManager  < Sinatra::Base
       :url       => params[:url],
       :created_at => Time.now
     )
-    tag = Tag.create(
-      :name => params[:tag]
-    )
+    tag = Tag.first(:name => params[:tag]) || Tag.create(:name => params[:tag])
     link.tags << tag
     link.save
     redirect '/links'
+  end
+
+  get '/links/:title' do
+    @title = params[:title].gsub("_", " ")
+    erb :"links/link"
+  end
+
+  post '/links/:title/newtag' do
+    title = params[:title].gsub("_", " ")
+    tag = Tag.first(:name => params[:tag]) || Tag.create(:name => params[:tag])
+    link = Link.first(:title => title)
+    link.tags << tag
+    link.save
+    redirect '/links'
+  end
+
+  post '/tags' do
+    redirect '/tags/' + params[:search_term]
   end
 
   get '/tags/:name' do
