@@ -19,5 +19,6 @@ def sign_up
   fill_in 'name', with: "Bob"
   fill_in 'email', with: 'bob@hotmail.com'
   fill_in 'password', with: 'very hard to decipher word'
+  fill_in 'password_confirmation', with: 'very hard to decipher word'
   click_button 'Create account'
 end

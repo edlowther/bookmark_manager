@@ -65,6 +65,19 @@
         null,
         null
       ],
+      "/Users/lowthe01/projects/makers_academy/week_four/bookmark_manager/spec/features/password_confirmation_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
       "/Users/lowthe01/projects/makers_academy/week_four/bookmark_manager/spec/features/signup_spec.rb": [
         1,
         1,
@@ -75,6 +88,6 @@
         null
       ]
     },
-    "timestamp": 1508509306
+    "timestamp": 1508511031
   }
 }

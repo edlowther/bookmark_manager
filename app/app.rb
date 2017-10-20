@@ -19,7 +19,8 @@ class BookmarkManager  < Sinatra::Base
     person = Person.create(
       :name => params[:name],
       :email => params[:email],
-      :password => params[:password]
+      :password => params[:password],
+      :password_confirmation => params[:password_confirmation], 
     )
     session[:current_user_id] = person.id
     redirect '/links'
