@@ -1,5 +1,6 @@
 ENV["RACK_ENV"] ||= "development"
 
+require 'bcrypt'
 require 'sinatra/base'
 require_relative 'models/person'
 require_relative 'models/link'
@@ -8,6 +9,7 @@ require_relative 'models/connect_to_database'
 
 class BookmarkManager  < Sinatra::Base
   enable :sessions
+  set :session_secret, 'super secret'
 
   get '/users/new' do
     erb :"users/new"
@@ -16,7 +18,8 @@ class BookmarkManager  < Sinatra::Base
   post '/users' do
     person = Person.create(
       :name => params[:name],
-      :email => params[:email]
+      :email => params[:email],
+      :password => params[:password]
     )
     session[:current_user_id] = person.id
     redirect '/links'
@@ -44,7 +47,7 @@ class BookmarkManager  < Sinatra::Base
     )
     tag = Tag.first(:name => params[:tag]) || Tag.create(:name => params[:tag])
     link.tags << tag
-    person = Person.get(session[:current_user_id])
+    person = current_user
     person.links << link
     link.person = person
     link.save
@@ -76,6 +79,13 @@ class BookmarkManager  < Sinatra::Base
     @links = tag ? tag.links : []
     erb :"links/index"
   end
+
+  helpers do
+   def current_user
+     @current_user ||= Person.get(session[:current_user_id])
+   end
+  end
+
 end
 
 include ConnectToDatabase
