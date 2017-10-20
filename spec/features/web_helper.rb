@@ -13,3 +13,10 @@ def create_link_with_bubble_tag
   fill_in 'tag',  with: 'bubbles'
   click_button 'Submit'
 end
+
+def sign_up
+  visit '/users/new'
+  fill_in 'name', with: "Bob"
+  fill_in 'email', with: 'bob@hotmail.com'
+  click_button 'Create account'
+end 

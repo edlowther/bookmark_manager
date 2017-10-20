@@ -1,13 +1,34 @@
 ENV["RACK_ENV"] ||= "development"
 
 require 'sinatra/base'
+require_relative 'models/person'
 require_relative 'models/link'
 require_relative 'models/tag'
 require_relative 'models/connect_to_database'
 
 class BookmarkManager  < Sinatra::Base
+  enable :sessions
+
+  get '/users/new' do
+    erb :"users/new"
+  end
+
+  post '/users' do
+    person = Person.create(
+      :name => params[:name],
+      :email => params[:email]
+    )
+    session[:current_user_id] = person.id
+    redirect '/links'
+  end
+
+  get '/users' do
+    @users = Person.all
+    erb :"users/index"
+  end
+
   get '/links' do
-    @links = Link.all
+    @links = Link.all || []
     erb :"links/index"
   end
 
@@ -23,7 +44,11 @@ class BookmarkManager  < Sinatra::Base
     )
     tag = Tag.first(:name => params[:tag]) || Tag.create(:name => params[:tag])
     link.tags << tag
+    person = Person.get(session[:current_user_id])
+    person.links << link
+    link.person = person
     link.save
+    person.save
     redirect '/links'
   end
 

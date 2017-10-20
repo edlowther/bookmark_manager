@@ -7,4 +7,5 @@ class Link
   property :created_at, DateTime  # A DateTime, for any date you might like.
 
   has n, :tags, :through => Resource
+  belongs_to :person
 end

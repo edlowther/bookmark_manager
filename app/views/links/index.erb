@@ -6,6 +6,7 @@
       <div>
         <h3><a href="<%= link.url %>"><%= link.title %></a></h3>
         <p>Tags: <%= link.tags.map { |tag| tag.name }.join(", ") %> <a href="/links/<%= link.title.gsub(" ", "_") %>/tags/new">Add new tag</a></p>
+        <p>Added by <%= link.person.email %></p>
       </div>
     </li>
   <% end %>
